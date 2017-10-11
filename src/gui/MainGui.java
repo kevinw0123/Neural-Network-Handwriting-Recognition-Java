@@ -69,7 +69,7 @@ public class MainGui extends JFrame {
         panel.setPreferredSize(new Dimension(410, 440));
 
         drawLetterButton = new JButton("Draw:");
-        drawLetterCombo = new JComboBox<>(new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Z", "Y"});
+        drawLetterCombo = new JComboBox<>(new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"});
 
         drawingPanel = new DrawingPanel(400, 400, RESOLUTION);
 
@@ -101,20 +101,20 @@ public class MainGui extends JFrame {
 
         centerPanel.add(new JLabel("Train as:", SwingConstants.CENTER), gbc);
 
-        trainAsCombo = new JComboBox<>(new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Z", "Y"});
+        trainAsCombo = new JComboBox<>(new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"});
         trainAsCombo.setAlignmentX(Component.CENTER_ALIGNMENT);
         trainAsCombo.setMaximumSize(new Dimension((int) trainAsCombo.getPreferredSize().getWidth(), 30));
         centerPanel.add(trainAsCombo, gbc);
 
         trainButton = new JButton("Set Training");
-        centerPanel.add(trainButton, gbc);
+//        centerPanel.add(trainButton, gbc);
 
 
-        trainNetworkButton = new JButton("Train 5000 times:");
+        trainNetworkButton = new JButton("Train X times:");
         trainingSetsAmount = new JFormattedTextField("5000");
         trainingSetsAmount.setMaximumSize(new Dimension(100, 30));
         trainingSetsAmount.setPreferredSize(new Dimension(100, 30));
-//        centerPanel.add(trainingSetsAmount, gbc);
+        centerPanel.add(trainingSetsAmount, gbc);
         centerPanel.add(trainNetworkButton, gbc);
 
         centerPanel.add(Box.createVerticalStrut(50));
@@ -186,6 +186,10 @@ public class MainGui extends JFrame {
         });
 
         trainNetworkButton.addActionListener(e -> {
+        	String letter = (String) trainAsCombo.getSelectedItem();
+            networkTrainer.addTrainingSet(new TrainingSet(drawingPanel.getPixels(), GoodOutputs.getInstance().getGoodOutput(letter)));
+            ReadWriteFile.saveToFile(drawingPanel.getPixels(), letter);
+            
             int number = 0;
             try {
                 number = Integer.parseInt(trainingSetsAmount.getText());
