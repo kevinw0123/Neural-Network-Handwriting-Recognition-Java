@@ -18,7 +18,7 @@ public class ReadWriteFile {
         for (int i = 0; i < 26; i++) {
             char letterValue = (char) (i + 65);
             String letter = String.valueOf(letterValue);
-            for (ArrayList<Integer> list : readFromFile("/" + letter + ".txt")) {
+            for (ArrayList<Integer> list : readFromFile("/resources/" + letter + ".txt")) {
                 trainingSets.add(new TrainingSet(list, GoodOutputs.getInstance().getGoodOutput(letter)));
             }
         }
@@ -27,6 +27,7 @@ public class ReadWriteFile {
     }
 
     private static ArrayList<ArrayList<Integer>> readFromFile(String filename) {
+    	System.out.println(filename+'\n');
         ArrayList<ArrayList<Integer>> inputs = new ArrayList<>();
 
         try {
@@ -55,7 +56,7 @@ public class ReadWriteFile {
 
     public static void saveToFile(ArrayList<Integer> input, String filename) {
         try {
-            File file = new File("resources/" + filename + ".txt");
+            File file = new File("src/resources/" + filename + ".txt");
             PrintWriter pw = new PrintWriter(new FileOutputStream(file, true));
             for (Integer i : input) {
                 pw.write(Integer.toString(i));

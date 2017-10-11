@@ -88,30 +88,16 @@ public class MainGui extends JFrame {
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.CENTER;
 
-        trainNetworkButton = new JButton("Train X times:");
-        trainingSetsAmount = new JFormattedTextField("5000");
-        trainingSetsAmount.setMaximumSize(new Dimension(100, 30));
-        trainingSetsAmount.setPreferredSize(new Dimension(100, 30));
-        centerPanel.add(trainNetworkButton, gbc);
-        centerPanel.add(trainingSetsAmount, gbc);
 
-        centerPanel.add(Box.createVerticalStrut(50));
-
-        helpButton = new JButton("HELP");
-        centerPanel.add(helpButton, gbc);
-
-        centerPanel.add(Box.createVerticalStrut(50));
-
-        transformButton = new JButton(">>");
+        
+        transformButton = new JButton("Predict");
         centerPanel.add(transformButton, gbc);
 
         centerPanel.add(Box.createVerticalStrut(50));
-
-        clearButton = new JButton("Clear");
-        clearButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        centerPanel.add(clearButton, gbc);
-
-        centerPanel.add(Box.createVerticalStrut(50));
+        
+        helpButton = new JButton("HELP");
+//        centerPanel.add(helpButton, gbc);
+//        centerPanel.add(Box.createVerticalStrut(50));
 
         centerPanel.add(new JLabel("Train as:", SwingConstants.CENTER), gbc);
 
@@ -120,8 +106,23 @@ public class MainGui extends JFrame {
         trainAsCombo.setMaximumSize(new Dimension((int) trainAsCombo.getPreferredSize().getWidth(), 30));
         centerPanel.add(trainAsCombo, gbc);
 
-        trainButton = new JButton("Train");
+        trainButton = new JButton("Set Training");
         centerPanel.add(trainButton, gbc);
+
+
+        trainNetworkButton = new JButton("Train 5000 times:");
+        trainingSetsAmount = new JFormattedTextField("5000");
+        trainingSetsAmount.setMaximumSize(new Dimension(100, 30));
+        trainingSetsAmount.setPreferredSize(new Dimension(100, 30));
+//        centerPanel.add(trainingSetsAmount, gbc);
+        centerPanel.add(trainNetworkButton, gbc);
+
+        centerPanel.add(Box.createVerticalStrut(50));
+
+        clearButton = new JButton("Clear");
+        clearButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        centerPanel.add(clearButton, gbc);
+
 
         mainPanel.add(centerPanel);
     }
